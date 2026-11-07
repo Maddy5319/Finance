@@ -1,0 +1,54 @@
+name: Build and Deploy index.jsx to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build React App (index.jsx)
+        run: |
+          npm install
+          npm run build
+          if [ -d "dist/client" ]; then
+            cp dist/client/index.html dist/client/404.html || true
+          elif [ -d "dist" ]; then
+            mkdir -p dist/client
+            cp -r dist/* dist/client/ || true
+            cp dist/client/index.html dist/client/404.html || true
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/client'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
