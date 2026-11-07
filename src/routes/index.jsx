@@ -13,16 +13,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { money } from "@/lib/format";
 import { loadDashboard } from "@/lib/finance";
 
-export const Route = createFileRoute("/_authed/")({
+export const Route = createFileRoute("/")({
   component: DashboardPage,
   head: () => ({ meta: [{ title: "Dashboard — Budge" }] }),
 });
 
-function Greeting({ user }) {
+function Greeting() {
   const hour = new Date().getHours();
-  const name = (user?.full_name || "").trim().split(" ")[0];
   const part = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
-  return name ? `${part}, ${name}` : `${part}`;
+  return part;
 }
 
 function DashboardSkeleton() {
@@ -41,7 +40,6 @@ function DashboardSkeleton() {
 }
 
 function DashboardPage() {
-  const { user } = Route.useRouteContext();
   const [data, setData] = useState(null);
   const today = new Date();
 
@@ -70,7 +68,7 @@ function DashboardPage() {
     <div className="animate-rise space-y-4 sm:space-y-5">
       <PageHeader
         eyebrow={format(today, "EEEE, d MMMM yyyy")}
-        title={<Greeting user={user} />}
+        title={<Greeting />}
         description="Your spending picture for today, this week and this month — all in one place."
         actions={
           <Link

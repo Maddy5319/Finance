@@ -33,7 +33,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CATEGORY_COLORS, categoryColor, money, moneyShort } from "@/lib/format";
 import { loadInsights, methodLabel } from "@/lib/finance";
 
-export const Route = createFileRoute("/_authed/insights")({
+export const Route = createFileRoute("/insights")({
   component: InsightsPage,
   head: () => ({ meta: [{ title: "Insights — Budge" }] }),
 });

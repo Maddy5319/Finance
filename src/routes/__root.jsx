@@ -1,8 +1,8 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import { DefaultCatchBoundary } from "@/components/DefaultCatchBoundary";
 import { NotFound } from "@/components/NotFound";
+import AppShell from "@/components/layout/AppShell";
 import { Toaster } from "@/components/ui/sonner";
-import { AuthProvider } from "@/lib/AuthContext";
 import { Base44Scripts } from "base44:document";
 import appCss from "@/index.css?url";
 
@@ -37,10 +37,10 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <AuthProvider>
+    <AppShell>
       <Outlet />
       <Toaster />
-    </AuthProvider>
+    </AppShell>
   );
 }
 

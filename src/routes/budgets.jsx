@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { money } from "@/lib/format";
 import { loadBudgets } from "@/lib/finance";
 
-export const Route = createFileRoute("/_authed/budgets")({
+export const Route = createFileRoute("/budgets")({
   component: BudgetsPage,
   head: () => ({ meta: [{ title: "Budgets — Budge" }] }),
 });

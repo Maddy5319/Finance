@@ -10,7 +10,7 @@ import { CURRENCY_SYMBOL, categoryColor, categoryTint, dateKey, money } from "@/
 import { PAYMENT_METHODS, loadCategories } from "@/lib/finance";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/_authed/expenses/new")({
+export const Route = createFileRoute("/expenses/new")({
   component: AddExpensePage,
   head: () => ({ meta: [{ title: "Add expense — Budge" }] }),
 });

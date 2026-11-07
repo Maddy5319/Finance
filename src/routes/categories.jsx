@@ -21,7 +21,7 @@ import {
 import { categoryColor, categoryTint, dateKey, money, monthRange } from "@/lib/format";
 import { invalidateCategories, loadCategories } from "@/lib/finance";
 
-export const Route = createFileRoute("/_authed/categories")({
+export const Route = createFileRoute("/categories")({
   component: CategoriesPage,
   head: () => ({ meta: [{ title: "Categories — Budge" }] }),
 });

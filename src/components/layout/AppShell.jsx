@@ -6,10 +6,8 @@ import {
   Tags,
   Target,
   LineChart,
-  LogOut,
   Wallet,
 } from "lucide-react";
-import { useAuth } from "@/lib/AuthContext";
 import { cn } from "@/lib/utils";
 
 export const NAV_ITEMS = [
@@ -25,15 +23,8 @@ function isActive(pathname, item) {
   return pathname === item.to || pathname.startsWith(`${item.to}/`);
 }
 
-export default function AppShell({ user, children }) {
+export default function AppShell({ children }) {
   const pathname = useLocation().pathname;
-  const { logout } = useAuth();
-  const initials = (user?.full_name || user?.email || "B")
-    .split(/[\s@]/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0].toUpperCase())
-    .join("");
 
   return (
     <div className="min-h-screen bg-background">
@@ -81,49 +72,16 @@ export default function AppShell({ user, children }) {
             );
           })}
         </nav>
-
-        <div className="mt-5 rounded-xl border border-border p-3">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-              {initials || "B"}
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[12.5px] font-medium text-foreground">{user?.full_name || "Your account"}</p>
-              <p className="truncate text-[10.5px] text-muted-foreground">{user?.email || ""}</p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={() => logout()}
-            className="mt-2.5 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-[11.5px] font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-            Sign out
-          </button>
-        </div>
       </aside>
 
       {/* Mobile top bar */}
-      <header className="sticky top-0 z-30 flex items-center justify-between gap-3 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-background/90 px-4 py-3 backdrop-blur-xl lg:hidden">
         <Link to="/" className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <Wallet className="h-4 w-4" strokeWidth={2} />
           </span>
           <span className="text-[0.95rem] font-semibold tracking-[-0.02em]">Budge</span>
         </Link>
-        <div className="flex items-center gap-1.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-[11px] font-semibold text-primary">
-            {initials || "B"}
-          </span>
-          <button
-            type="button"
-            onClick={() => logout()}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-            aria-label="Sign out"
-          >
-            <LogOut className="h-4 w-4" />
-          </button>
-        </div>
       </header>
 
       <main className="px-4 pb-28 pt-5 sm:px-6 lg:ml-[248px] lg:px-10 lg:pb-14 lg:pt-10">

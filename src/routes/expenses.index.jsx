@@ -13,7 +13,7 @@ import { categoryColor, categoryTint, money } from "@/lib/format";
 import { loadCategories, loadExpenses, methodLabel } from "@/lib/finance";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/_authed/expenses/")({
+export const Route = createFileRoute("/expenses/")({
   component: ExpensesPage,
   head: () => ({ meta: [{ title: "Expenses — Budge" }] }),
 });
