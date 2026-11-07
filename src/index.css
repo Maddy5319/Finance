@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 222 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 30% 10%;
+    --primary: 232 74% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 18% 94%;
+    --secondary-foreground: 222 25% 18%;
+    --muted: 220 18% 95%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 232 80% 96%;
+    --accent-foreground: 232 58% 34%;
+    --destructive: 356 70% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 62% 34%;
+    --success-foreground: 0 0% 100%;
+    --warning: 32 84% 42%;
+    --warning-foreground: 0 0% 100%;
+    --border: 220 16% 90%;
+    --input: 220 16% 88%;
+    --ring: 232 74% 56%;
+    --chart-1: 232 74% 56%;
+    --chart-2: 158 62% 40%;
+    --chart-3: 32 84% 52%;
+    --chart-4: 344 68% 56%;
+    --chart-5: 266 58% 60%;
+    --radius: 0.875rem;
+    --font-display: "Inter", system-ui, -apple-system, sans-serif;
+    --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 25% 20%;
+    --sidebar-primary: 232 74% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 18% 95%;
+    --sidebar-accent-foreground: 222 25% 14%;
+    --sidebar-border: 220 16% 91%;
+    --sidebar-ring: 232 74% 56%;
+  }
+
+  .dark {
+    --background: 222 30% 6%;
+    --foreground: 220 20% 94%;
+    --card: 222 26% 10%;
+    --card-foreground: 220 20% 94%;
+    --popover: 222 26% 10%;
+    --popover-foreground: 220 20% 94%;
+    --primary: 232 78% 66%;
+    --primary-foreground: 222 40% 8%;
+    --secondary: 222 20% 16%;
+    --secondary-foreground: 220 20% 94%;
+    --muted: 222 20% 16%;
+    --muted-foreground: 220 12% 64%;
+    --accent: 232 40% 20%;
+    --accent-foreground: 232 80% 88%;
+    --destructive: 356 68% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 158 52% 50%;
+    --success-foreground: 222 40% 8%;
+    --warning: 36 82% 58%;
+    --warning-foreground: 222 40% 8%;
+    --border: 222 18% 18%;
+    --input: 222 18% 20%;
+    --ring: 232 78% 66%;
+    --chart-1: 232 78% 66%;
+    --chart-2: 158 52% 52%;
+    --chart-3: 36 82% 58%;
+    --chart-4: 344 64% 62%;
+    --chart-5: 266 62% 68%;
+    --sidebar-background: 222 28% 8%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-primary: 232 78% 66%;
+    --sidebar-primary-foreground: 222 40% 8%;
+    --sidebar-accent: 222 20% 16%;
+    --sidebar-accent-foreground: 220 20% 94%;
+    --sidebar-border: 222 18% 18%;
+    --sidebar-ring: 232 78% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.16);
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.45;
+  }
+}
+
+@layer utilities {
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-rise {
+    animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

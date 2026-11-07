@@ -1,0 +1,73 @@
+{
+  "name": "Budget",
+  "type": "object",
+  "properties": {
+    "category_id": {
+      "type": "string",
+      "description": "Id of the category this budget belongs to"
+    },
+    "category_name": {
+      "type": "string",
+      "description": "Category name copied when the budget was set"
+    },
+    "color": {
+      "type": "string",
+      "default": "slate",
+      "description": "Category colour key"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Monthly limit for the category"
+    },
+    "month": {
+      "type": "string",
+      "description": "Month the budget applies to, YYYY-MM"
+    }
+  },
+  "required": [
+    "amount",
+    "month"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

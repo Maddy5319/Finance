@@ -1,0 +1,86 @@
+{
+  "name": "Category",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "Display name of the spending category"
+    },
+    "color": {
+      "type": "string",
+      "enum": [
+        "indigo",
+        "emerald",
+        "amber",
+        "rose",
+        "violet",
+        "teal",
+        "orange",
+        "slate"
+      ],
+      "enumColors": [
+        "blue",
+        "green",
+        "yellow",
+        "pink",
+        "purple",
+        "green",
+        "orange",
+        "gray"
+      ],
+      "default": "slate",
+      "description": "Accent colour used across the app"
+    },
+    "icon": {
+      "type": "string",
+      "default": "circle",
+      "description": "Key of the icon shown for this category"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
