@@ -27,11 +27,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Build React App (index.jsx)
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm run build
           if [ -d "dist/client" ]; then
             cp dist/client/index.html dist/client/404.html || true
